@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>বাজার দর</div>;
+  return <div></div>;
 }
