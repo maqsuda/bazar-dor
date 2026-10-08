@@ -8,7 +8,7 @@ const PriceUp = async () => {
   //   const Navs = data.data;
   console.log(filterData);
 
-  return <div></div>;
+  return <div>Price UP</div>;
 };
 
 export default PriceUp;
