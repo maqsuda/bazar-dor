@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Navlinks from "./Navlinks";
+import MarqueBar from "./MarqueBar";
+import PriceUp from "./PriceUp";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-bd", {
@@ -34,6 +36,11 @@ const Header = () => {
       </div>
       <hr className="my-3 text-gray-300" />
       <Navlinks />
+      <hr className="my-3 text-gray-300" />
+      <MarqueBar />
+      <hr className="my-3 text-gray-300" />
+
+      <PriceUp />
     </div>
   );
 };
