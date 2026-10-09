@@ -1,12 +1,6 @@
+import type { categoryTypes } from "@/types/categoryTypes";
 import Link from "next/link";
 import React from "react";
-
-interface categoryTypes {
-  id: string;
-  slug: string;
-  nameBn: string;
-  icon: string;
-}
 
 const Navlinks = async () => {
   const res = await fetch(
@@ -17,8 +11,13 @@ const Navlinks = async () => {
   // console.log(data);
   return (
     <div className="w-7xl mx-auto">
+      <Link href={"/"}>Home</Link>
       {data.map((nav, ind) => (
-        <Link className="px-5 py-2 font-bold" key={ind} href={nav.slug}>
+        <Link
+          className="px-5 py-2 font-bold"
+          key={ind}
+          href={`/products/category/${nav.slug}`}
+        >
           {nav.icon}
           {nav.nameBn}
         </Link>

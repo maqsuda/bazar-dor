@@ -1,8 +1,4 @@
 import Image from "next/image";
-import Navlinks from "./Navlinks";
-import MarqueBar from "./MarqueBar";
-import PriceUp from "./PriceUp";
-import Banner from "./Banner";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-bd", {
@@ -35,13 +31,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <hr className="my-3 text-gray-300" />
-      <Navlinks />
-      <hr className="my-3 text-gray-300" />
-      <MarqueBar />
-      <hr className="my-3 text-gray-300" />
-      <Banner />
-      <PriceUp />
     </div>
   );
 };
