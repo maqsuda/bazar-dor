@@ -1,6 +1,7 @@
 import React from "react";
 import PriceCard from "./PriceCard";
 import { TiArrowSortedDown } from "react-icons/ti";
+import type { ProductTypes } from "@/types/categoryTypes";
 
 const PriceDownProduct = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");

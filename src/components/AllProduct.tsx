@@ -3,7 +3,9 @@ import PriceCard from "./PriceCard";
 import type { ProductTypes } from "@/types/categoryTypes";
 
 const AllProduct = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(
+    "https://api.api-store.workers.dev/api/bazardor/products",
+  );
   const data: ProductTypes[] = await res.json();
   return (
     <div className="w-7xl mx-auto mt-10">

@@ -2,7 +2,11 @@ import PriceCard from "@/components/PriceCard";
 import { toBanglaDigits, type ProductTypes } from "@/types/categoryTypes";
 import React from "react";
 
-const ProductCategoryPage = async ({ params }) => {
+const ProductCategoryPage = async ({
+  params,
+}: {
+  params: { categoryId: string };
+}) => {
   const { categoryId } = await params;
   console.log(categoryId);
 
@@ -16,7 +20,7 @@ const ProductCategoryPage = async ({ params }) => {
 
   return (
     <div className="w-7xl mx-auto mt-10">
-      <div className="flex items-center py-5 px-5 rounded-xl bg-white ">
+      {/* <div className="flex items-center py-5 px-5 rounded-xl bg-white ">
         <div>
           <p className="rounded-xl text-4xl">{data[0].categoryIcon}</p>
         </div>
@@ -24,7 +28,7 @@ const ProductCategoryPage = async ({ params }) => {
           <h2 className="font-bold text-4xl">{data[0].categoryNameBn}</h2>
           <p>{toBanglaDigits(data.length)}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex justify-end items-center py-5 px-5 rounded-xl bg-white mt-5">
         <h2 className="text-xl pr-2">সাজান</h2>
@@ -36,7 +40,7 @@ const ProductCategoryPage = async ({ params }) => {
       </div>
 
       <h2 className="text-3xl font-bold">সব পণ্য</h2>
-      {/* <p className="py-3">মোট {data.length} টি পণ্য দেখানো হচ্ছে</p> */}
+
       <div className="grid grid-cols-3 gap-5 my-2">
         {data.map((product) => (
           <PriceCard key={product.id} product={product}></PriceCard>
