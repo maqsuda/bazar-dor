@@ -8,7 +8,7 @@ const ProductCategoryPage = async ({
   params: { categoryId: string };
 }) => {
   const { categoryId } = await params;
-  console.log(categoryId);
+  // console.log(categoryId);
 
   const res = await fetch(
     `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,

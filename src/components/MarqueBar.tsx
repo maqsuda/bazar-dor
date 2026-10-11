@@ -13,7 +13,7 @@ import "react-marquee-text/dist/styles.css";
 const MarqueBar = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   const data: ProductTypes[] = await res.json();
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="px-2">
