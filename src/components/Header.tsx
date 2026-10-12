@@ -1,4 +1,5 @@
 import Image from "next/image";
+import UserInfoPage from "./UserInfo";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-bd", {
@@ -24,12 +25,7 @@ const Header = () => {
             <p>{date}</p>
           </div>
         </div>
-        <div className="flex justify-between items-center gap-2">
-          <button className="px-2 font-bold">সাইন ইন</button>
-          <button className="px-3 py-2 rounded-xl bg-[#05893E] font-bold">
-            সাইন আপ
-          </button>
-        </div>
+        <UserInfoPage />
       </div>
     </div>
   );
