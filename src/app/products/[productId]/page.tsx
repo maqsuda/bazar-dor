@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import {
   calculateMarketStats,
   toBanglaDigits,
@@ -16,6 +17,9 @@ const ProductsPage = async ({ params }: { params: { productId: string } }) => {
     `https://api.api-store.workers.dev/api/bazardor/products/${productId}`,
   );
   const data = await res.json();
+  if (!data) {
+    NotFound();
+  }
 
   const marketsData = data.markets;
   const sortedData = [...marketsData].sort((a, b) => a.min - b.min);

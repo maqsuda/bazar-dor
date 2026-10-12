@@ -1,5 +1,5 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import toast from "react-hot-toast";
@@ -32,6 +32,22 @@ const SignInPage = () => {
       toast.error("Something went error!");
       console.log(error);
     }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+
+    console.log("after google sign in", resData);
+  };
+
+  const handleGithubSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "github",
+    });
+
+    console.log("after github sign in", resData);
   };
 
   return (
@@ -72,10 +88,16 @@ const SignInPage = () => {
               <p>____________________________OR_____________________________</p>
             </fieldset>
             <div className="flex gap-2 justify-between items-center">
-              <button className="flex items-center gap-1 px-2 py-2 text-xs rounded-xl border border-base-300">
+              <button
+                onClick={handleGoogleSignIn}
+                className="flex items-center gap-1 px-2 py-2 text-xs rounded-xl border border-base-300 cursor-pointer"
+              >
                 <FcGoogle /> Google দিয়ে চালিয়ে যান
               </button>
-              <button className="flex items-center px-4 py-2 text-xs rounded-xl border border-base-300">
+              <button
+                onClick={handleGithubSignIn}
+                className="flex items-center px-4 py-2 text-xs rounded-xl border border-base-300 cursor-pointer"
+              >
                 <FaGithub />
                 GitHub দিয়ে চালিয়ে যান
               </button>

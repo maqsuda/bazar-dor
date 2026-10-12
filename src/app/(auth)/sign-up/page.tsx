@@ -1,9 +1,10 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+import GithubSignIn from "@/components/GithubSignIn";
+import { authClient, signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
-import { FaGithub } from "react-icons/fa";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
@@ -29,13 +30,31 @@ const SignUpPage = () => {
     console.log(resData);
     if (data) {
       redirect("/");
+      toast("Sign up Successfully");
       console.log(data);
     }
     if (error) {
+      toast(error.message as string);
       console.log(error);
     }
     // console.log(resData, error);
   };
+
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+
+    console.log("after google sign in", resData);
+  };
+
+  // const handleGithubSignIn = async () => {
+  //   const resData = await signIn.social({
+  //     provider: "github",
+  //   });
+
+  //   console.log("after github sign in", resData);
+  // };
 
   return (
     <div className="">
@@ -101,13 +120,14 @@ const SignUpPage = () => {
               <p>____________________________OR_____________________________</p>
             </fieldset>
             <div className="flex gap-2 justify-between items-center">
-              <button className="flex items-center gap-1 px-2 py-2 text-xs rounded-xl border border-base-300">
+              <button
+                onClick={handleGoogleSignIn}
+                className="flex items-center gap-1 px-2 py-2 text-xs rounded-xl border border-base-300 cursor-pointer"
+              >
                 <FcGoogle /> Google দিয়ে চালিয়ে যান
               </button>
-              <button className="flex items-center gap-1 px-4 py-2 text-xs rounded-xl border border-base-300">
-                <FaGithub />
-                GitHub দিয়ে চালিয়ে যান
-              </button>
+
+              <GithubSignIn />
             </div>
             <div>
               <p className="text-center">

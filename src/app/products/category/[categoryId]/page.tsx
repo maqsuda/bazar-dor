@@ -1,5 +1,7 @@
+import NotFound from "@/app/not-found";
 import PriceCard from "@/components/PriceCard";
 import { toBanglaDigits, type ProductTypes } from "@/types/categoryTypes";
+
 import React from "react";
 
 const ProductCategoryPage = async ({
@@ -14,6 +16,10 @@ const ProductCategoryPage = async ({
     `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
   );
   const data: ProductTypes[] = await res.json();
+  console.log("data----", data);
+  if (!data) {
+    NotFound();
+  }
 
   // const categoryData=await data[0].categoryNameBn;
   // console.log(categoryData);
