@@ -23,6 +23,25 @@ export interface ProductTypes {
   };
 }
 
+interface Market {
+  market: string;
+  division: string;
+  min: number;
+  max: number;
+}
+
+interface Products {
+  markets: Market[];
+}
+
+interface MarketWisePrice {
+  market: string;
+  division: string;
+  minimum: number;
+  maximum: number;
+  average: number;
+}
+
 export interface categoryTypes {
   id: string;
   slug: string;
@@ -30,11 +49,15 @@ export interface categoryTypes {
   icon: string;
 }
 
-export const toBanglaDigits = (value: number) =>
-  String(value).replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[digit]);
+export const toBanglaDigits = (value: number): string => {
+  return String(value).replace(
+    /\d/g,
+    (digit: string) => "০১২৩৪৫৬৭৮৯"[Number(digit)],
+  );
+};
 
-export const toBanglaUnit = (unit) => {
-  const units = {
+export const toBanglaUnit = (unit: string): string => {
+  const units: Record<string, string> = {
     kg: "কেজি",
     kilogram: "কেজি",
     gram: "গ্রাম",
@@ -47,10 +70,25 @@ export const toBanglaUnit = (unit) => {
     l: "লিটার",
   };
 
-  return units[String(unit).toLowerCase()] || unit;
+  return units[unit.toLowerCase()] ?? unit;
 };
 
-export function calculateMarketStats(product) {
+interface Market {
+  min: number;
+  max: number;
+}
+
+interface Product {
+  markets?: Market[] | null;
+}
+
+interface MarketStats {
+  maximum: number;
+  minimum: number;
+  average: number;
+}
+
+export function calculateMarketStats(product: Product): MarketStats {
   const markets = product.markets;
 
   if (!markets || markets.length === 0) {
@@ -99,7 +137,17 @@ export function calculateMarketStats(product) {
 //   }));
 // }
 
-export function getMarketWisePrices(products) {
+// export function getMarketWisePrices(products) {
+//   return products.markets.map((market) => ({
+//     market: market.market,
+//     division: market.division,
+//     minimum: market.min,
+//     maximum: market.max,
+//     average: Math.round((market.min + market.max) / 2),
+//   }));
+// }
+
+export function getMarketWisePrices(products: Products): MarketWisePrice[] {
   return products.markets.map((market) => ({
     market: market.market,
     division: market.division,

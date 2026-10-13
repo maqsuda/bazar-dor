@@ -1,8 +1,7 @@
 import NotFound from "@/app/not-found";
 import PriceCard from "@/components/PriceCard";
-import { toBanglaDigits, type ProductTypes } from "@/types/categoryTypes";
-
-import React from "react";
+import SortedData from "@/components/SortedData";
+import { type ProductTypes } from "@/types/categoryTypes";
 
 const ProductCategoryPage = async ({
   params,
@@ -16,13 +15,10 @@ const ProductCategoryPage = async ({
     `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
   );
   const data: ProductTypes[] = await res.json();
-  console.log("data----", data);
+
   if (!data) {
     NotFound();
   }
-
-  // const categoryData=await data[0].categoryNameBn;
-  // console.log(categoryData);
 
   return (
     <div className="w-7xl mx-auto mt-10">
@@ -40,9 +36,10 @@ const ProductCategoryPage = async ({
         <h2 className="text-xl pr-2">সাজান</h2>
         <select defaultValue="ডিফল্ট" className="select">
           <option disabled={true}>ডিফল্ট</option>
-          <option>দাম: কম থেকে বেশি</option>
-          <option>দাম: বেশি থেকে কম</option>
+          <option value="asc">দাম: কম থেকে বেশি</option>
+          <option value="desc">দাম: বেশি থেকে কম</option>
         </select>
+        {/* <SortedData data={data} /> */}
       </div>
 
       <h2 className="text-3xl font-bold">সব পণ্য</h2>
